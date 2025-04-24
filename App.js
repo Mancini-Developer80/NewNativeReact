@@ -14,28 +14,28 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const firebaseConfig = {
-    apiKey: "AIzaSyBLGnmOHGUtnFSHyIOb5yQwItNJkiMRWd0",
-    authDomain: "shopping-list-demo-5ef3a.firebaseapp.com",
-    projectId: "shopping-list-demo-5ef3a",
-    storageBucket: "shopping-list-demo-5ef3a.firebasestorage.app",
-    messagingSenderId: "338378377371",
-    appId: "1:338378377371:web:093927c42c713ca9201e3e",
+    apiKey: "AIzaSyCntEO-AqLuNJiLS-yNcDy8StyDdSMQ3Ko",
+    authDomain: "chat-ddaad.firebaseapp.com",
+    projectId: "chat-ddaad",
+    storageBucket: "chat-ddaad.firebasestorage.app",
+    messagingSenderId: "429939474253",
+    appId: "1:429939474253:web:ebdedd52853ef2df9fc104",
   };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  // Initialize Cloud Firestore and get a reference to the service
+  const db = getFirestore(app);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Start">
         <Stack.Screen name="Start" component={Start} />
-        <Stack.Screen name="Chat" component={Chat} />
+        <Stack.Screen name="Chat">
+          {(props) => <Chat {...props} db={db} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
 
 const styles = StyleSheet.create({});
 
