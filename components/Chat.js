@@ -72,6 +72,13 @@ const Chat = ({ route, navigation, db, isConnected }) => {
     }
   }, [db, name, navigation, isConnected]);
 
+  // Monitor connection status and show an alert when offline
+  useEffect(() => {
+    if (!isConnected) {
+      Alert.alert("Connection Lost", "You are now offline.");
+    }
+  }, [isConnected]);
+
   const onSend = (newMessages) => {
     if (isConnected) {
       // Save the new message to Firestore
