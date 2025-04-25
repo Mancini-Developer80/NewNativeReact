@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
+import { useEffect } from "react"; // Import useEffect
 import Start from "./components/Start";
 import Chat from "./components/Chat";
 
