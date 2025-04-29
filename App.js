@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
-import { useEffect } from "react"; // Import useEffect
+import { useEffect } from "react";
 import Start from "./components/Start";
 import Chat from "./components/Chat";
 
@@ -15,6 +15,7 @@ import {
   enableNetwork,
   disableNetwork,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage"; // Import getStorage
 import { useNetInfo } from "@react-native-community/netinfo";
 
 // Firebase configuration
@@ -22,7 +23,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCntEO-AqLuNJiLS-yNcDy8StyDdSMQ3Ko",
   authDomain: "chat-ddaad.firebaseapp.com",
   projectId: "chat-ddaad",
-  storageBucket: "chat-ddaad.firebasestorage.app",
+  storageBucket: "chat-ddaad.appspot.com", // Ensure this matches your Firebase project
   messagingSenderId: "429939474253",
   appId: "1:429939474253:web:ebdedd52853ef2df9fc104",
 };
@@ -30,6 +31,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app); // Initialize Firebase Storage
 
 // Create the navigator
 const Stack = createNativeStackNavigator();
@@ -61,7 +63,12 @@ const App = () => {
         <Stack.Screen
           name="Chat"
           children={(props) => (
-            <Chat {...props} db={db} isConnected={netInfo.isConnected} />
+            <Chat
+              {...props}
+              db={db}
+              storage={storage}
+              isConnected={netInfo.isConnected}
+            />
           )}
         />
       </Stack.Navigator>
