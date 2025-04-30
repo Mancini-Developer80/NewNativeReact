@@ -15,7 +15,9 @@ import {
   enableNetwork,
   disableNetwork,
 } from "firebase/firestore";
-import { getStorage } from "firebase/storage"; // Import getStorage
+import { getStorage } from "firebase/storage";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNetInfo } from "@react-native-community/netinfo";
 
 // Firebase configuration
@@ -23,7 +25,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCntEO-AqLuNJiLS-yNcDy8StyDdSMQ3Ko",
   authDomain: "chat-ddaad.firebaseapp.com",
   projectId: "chat-ddaad",
-  storageBucket: "chat-ddaad.appspot.com", // Ensure this matches your Firebase project
+  storageBucket: "chat-ddaad.appspot.com",
   messagingSenderId: "429939474253",
   appId: "1:429939474253:web:ebdedd52853ef2df9fc104",
 };
@@ -31,7 +33,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const storage = getStorage(app); // Initialize Firebase Storage
+const storage = getStorage(app);
+
+// Initialize Firebase Auth with AsyncStorage
+const auth = initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage), // Use AsyncStorage for persistence
+});
 
 // Create the navigator
 const Stack = createNativeStackNavigator();
