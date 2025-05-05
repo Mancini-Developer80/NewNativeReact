@@ -74,6 +74,7 @@ const CustomActions = ({ storage, onSend }) => {
 
   const getLocation = async () => {
     try {
+      console.log("Requesting location permissions...");
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         Alert.alert(
@@ -83,9 +84,11 @@ const CustomActions = ({ storage, onSend }) => {
         return;
       }
 
+      console.log("Fetching location...");
       const location = await Location.getCurrentPositionAsync({});
       if (location) {
         const { latitude, longitude } = location.coords;
+        console.log("Location retrieved:", { latitude, longitude });
         onSend([{ text: "", location: { latitude, longitude } }]);
       }
     } catch (error) {

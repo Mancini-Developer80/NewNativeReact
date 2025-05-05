@@ -24,10 +24,12 @@ import { useNetInfo } from "@react-native-community/netinfo";
 const firebaseConfig = {
   apiKey: "AIzaSyCntEO-AqLuNJiLS-yNcDy8StyDdSMQ3Ko",
   authDomain: "chat-ddaad.firebaseapp.com",
+  databaseURL:
+    "https://chat-ddaad-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "chat-ddaad",
-  storageBucket: "chat-ddaad.appspot.com",
+  storageBucket: "chat-ddaad.firebasestorage.app",
   messagingSenderId: "429939474253",
-  appId: "1:429939474253:web:ebdedd52853ef2df9fc104",
+  appId: "1:429939474253:web:174f7ab7a303d38e9fc104",
 };
 
 // Initialize Firebase
