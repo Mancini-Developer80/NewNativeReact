@@ -82,7 +82,7 @@ This chat application is designed to provide a user-friendly and accessible comm
 1. Clone this repository:
   git clone https://github.com/Mancini-Developer80/chat-application.git
 2. Navigate to the project directory:
-   cd hello-wordl
+   cd hello-world
 3. Install dependencies:
    npm install
 4. Start the application:
