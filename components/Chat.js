@@ -57,7 +57,7 @@ const Chat = ({ route, navigation, db, storage }) => {
         location: message.location || null,
       });
     } catch (error) {
-      console.error("Error saving message to Firestore:", error);
+      // Error handling logic can be added here if needed
     }
   };
 

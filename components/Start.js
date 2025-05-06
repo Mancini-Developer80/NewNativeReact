@@ -15,6 +15,7 @@ const Start = ({ navigation }) => {
   const auth = getAuth();
   const [name, setName] = useState("");
   const [color, setColor] = useState("#0075A2"); // Default color
+  const colors = ["#0075A2", "#481620", "#D55672"];
 
   const signInUser = () => {
     signInAnonymously(auth)
@@ -28,7 +29,6 @@ const Start = ({ navigation }) => {
       })
       .catch((err) => {
         Alert.alert("Unable to sign in, try later again");
-        console.log(err);
       });
   };
 
@@ -38,7 +38,7 @@ const Start = ({ navigation }) => {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Text style={styles.title}>Hello World</Text>
+        <Text style={styles.title}>welcome to my Application!</Text>
         <TextInput
           style={styles.textInput}
           value={name}
@@ -46,18 +46,13 @@ const Start = ({ navigation }) => {
           placeholder="Type your username here"
         />
         <View style={styles.choicesContainer}>
-          <TouchableOpacity
-            style={[styles.choice, { backgroundColor: "#0075A2" }]}
-            onPress={() => setColor("#0075A2")}
-          />
-          <TouchableOpacity
-            style={[styles.choice, { backgroundColor: "#481620" }]}
-            onPress={() => setColor("#481620")}
-          />
-          <TouchableOpacity
-            style={[styles.choice, { backgroundColor: "#D55672" }]}
-            onPress={() => setColor("#D55672")}
-          />
+          {colors.map((color) => (
+            <TouchableOpacity
+              key={color}
+              style={[styles.choice, { backgroundColor: color }]}
+              onPress={() => setColor(color)}
+            />
+          ))}
         </View>
         {/* This button navigates to the Chat screen and passes the name and
          color as parameters */}
